@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Account Strategy"
+  short_description: "Build account briefs with evidence and gaps"
+  default_prompt: "Use $plan-account-strategy to prepare a sourced account brief."
