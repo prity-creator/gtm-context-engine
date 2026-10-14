@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "workspaceId": "fictional-demo",
+  "asOf": "2026-10-15T09:00:00Z",
+  "accounts": [
+    {
+      "id": "a1",
+      "name": "Northstar Analytics",
+      "industry": "B2B SaaS",
+      "employees": 220,
+      "owner": "Maya",
+      "stage": "proposal",
+      "domain": "a1.example",
+      "factsSource": "Fictional CRM fixture"
+    },
+    {
+      "id": "a2",
+      "name": "Cedar Operations",
+      "industry": "Business services",
+      "employees": 780,
+      "owner": "Arun",
+      "stage": "discovery",
+      "domain": "a2.example",
+      "factsSource": "Fictional CRM fixture"
+    },
+    {
+      "id": "a3",
+      "name": "Harbor Systems",
+      "industry": "B2B SaaS",
+      "employees": 1200,
+      "owner": "Maya",
+      "stage": "qualified",
+      "domain": "a3.example",
+      "factsSource": "Fictional CRM fixture"
+    },
+    {
+      "id": "a4",
+      "name": "Orbit Studio",
+      "industry": "Business services",
+      "employees": 90,
+      "owner": "Nina",
+      "stage": "nurture",
+      "domain": "a4.example",
+      "factsSource": "Fictional CRM fixture"
+    },
+    {
+      "id": "a5",
+      "name": "Maple Cloud",
+      "industry": "B2B SaaS",
+      "employees": 340,
+      "owner": "Arun",
+      "stage": "qualified",
+      "domain": "a5.example",
+      "factsSource": "Fictional CRM fixture"
+    },
+    {
+      "id": "a6",
+      "name": "Atlas Logistics",
+      "industry": "Logistics",
+      "employees": 1800,
+      "owner": "Nina",
+      "stage": "research",
+      "domain": "a6.example",
+      "factsSource": "Fictional CRM fixture"
+    },
+    {
+      "id": "a7",
+      "name": "Summit Labs",
+      "industry": "B2B SaaS",
+      "employees": 160,
+      "owner": "Maya",
+      "stage": "research",
+      "domain": "a7.example",
+      "factsSource": "Fictional CRM fixture"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "c1",
+      "accountId": "a1",
+      "name": "Alex Morgan",
+      "email": "contact@a1.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-1",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": false
+    },
+    {
+      "id": "c2",
+      "accountId": "a2",
+      "name": "Jamie Patel",
+      "email": "contact@a2.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-2",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": false
+    },
+    {
+      "id": "c3",
+      "accountId": "a3",
+      "name": "Casey Brooks",
+      "email": "contact@a3.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-3",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": true
+    },
+    {
+      "id": "c4",
+      "accountId": "a4",
+      "name": "Jordan Lee",
+      "email": "contact@a4.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-4",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": false
+    },
+    {
+      "id": "c5",
+      "accountId": "a5",
+      "name": "Riley Chen",
+      "email": "contact@a5.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-5",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": false
+    },
+    {
+      "id": "c6",
+      "accountId": "a6",
+      "name": "Sam Taylor",
+      "email": "contact@a6.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-6",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": false
+    },
+    {
+      "id": "c7",
+      "accountId": "a7",
+      "name": "Taylor Quinn",
+      "email": "contact@a7.example",
+      "linkedin": "https://www.linkedin.com/in/fictional-gtm-7",
+      "role": "champion",
+      "roleConfirmed": true,
+      "doNotContact": false
+    },
+    {
+      "id": "c8",
+      "accountId": "a1",
+      "name": "Morgan Reed",
+      "email": "finance@a1.example",
+      "role": "economic_buyer",
+      "roleConfirmed": true
+    },
+    {
+      "id": "c9",
+      "accountId": "a7",
+      "name": "Taylor Quinn II",
+      "email": "contact@a7.example",
+      "role": "unknown",
+      "roleConfirmed": false
+    }
+  ],
+  "events": [
+    {
+      "id": "n1",
+      "source": "salesrobot",
+      "contactId": "c1",
+      "channel": "linkedin",
+      "direction": "inbound",
+      "at": "2026-10-10T09:00:00Z",
+      "text": "Please email me an implementation outline. Our concern is migration effort."
+    },
+    {
+      "id": "n2",
+      "source": "salesrobot",
+      "contactId": "c1",
+      "channel": "linkedin",
+      "direction": "outbound",
+      "at": "2026-10-10T09:15:00Z",
+      "text": "I will email the implementation outline by 12 October at 10:00 UTC."
+    },
+    {
+      "id": "n3",
+      "source": "smartlead",
+      "contactId": "c8",
+      "channel": "email",
+      "direction": "inbound",
+      "at": "2026-10-11T11:00:00Z",
+      "text": "Can you break down the costs and assumptions? Please do not invent an ROI figure."
+    },
+    {
+      "id": "n4",
+      "source": "hubspot",
+      "contactId": "c1",
+      "channel": "crm",
+      "direction": "internal",
+      "at": "2026-10-11T12:00:00Z",
+      "text": "Stage is proposal. Owner Maya. Implementation follow-up remains open."
+    },
+    {
+      "id": "c1",
+      "source": "smartlead",
+      "contactId": "c2",
+      "channel": "email",
+      "direction": "inbound",
+      "at": "2026-10-12T11:00:00Z",
+      "text": "Happy to discuss. I booked the discovery session for 20 October."
+    },
+    {
+      "id": "c2",
+      "source": "google_calendar",
+      "contactId": "c2",
+      "channel": "calendar",
+      "direction": "internal",
+      "at": "2026-10-12T11:05:00Z",
+      "text": "Discovery meeting booked for 20 October.",
+      "kind": "meeting_booked",
+      "meetingId": "meet-cedar",
+      "startsAt": "2026-10-20T14:00:00Z"
+    },
+    {
+      "id": "h1",
+      "source": "salesrobot",
+      "contactId": "c3",
+      "channel": "linkedin",
+      "direction": "inbound",
+      "at": "2026-10-12T10:00:00Z",
+      "text": "Please remove me from your list and do not contact me again.",
+      "kind": "opt_out"
+    },
+    {
+      "id": "o1",
+      "source": "smartlead",
+      "contactId": "c4",
+      "channel": "email",
+      "direction": "inbound",
+      "at": "2026-10-13T09:00:00Z",
+      "text": "Our launch is this month. Follow up on 2 November at 09:00 UTC."
+    },
+    {
+      "id": "o2",
+      "source": "salesrobot",
+      "contactId": "c4",
+      "channel": "linkedin",
+      "direction": "outbound",
+      "at": "2026-10-13T10:00:00Z",
+      "text": "Understood. I have noted 2 November."
+    },
+    {
+      "id": "m1",
+      "source": "salesrobot",
+      "contactId": "c5",
+      "channel": "linkedin",
+      "direction": "inbound",
+      "at": "2026-10-10T08:00:00Z",
+      "text": "Please email the case study showing the actual results."
+    },
+    {
+      "id": "a1",
+      "source": "smartlead",
+      "contactId": "c6",
+      "channel": "email",
+      "direction": "inbound",
+      "at": "2026-10-13T12:00:00Z",
+      "text": "Can you explain your service? We have not discussed budget or implementation yet."
+    },
+    {
+      "id": "s1",
+      "source": "salesrobot",
+      "contactId": "c7",
+      "channel": "linkedin",
+      "direction": "inbound",
+      "at": "2026-10-13T13:00:00Z",
+      "text": "Could you send an overview?"
+    },
+    {
+      "id": "n1",
+      "source": "salesrobot",
+      "contactId": "c1",
+      "channel": "linkedin",
+      "direction": "inbound",
+      "at": "2026-10-10T09:00:00Z",
+      "text": "Please email me an implementation outline. Our concern is migration effort."
+    }
+  ],
+  "coverage": [
+    {
+      "accountId": "a1",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a1",
+      "channel": "email",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a1",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a1",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a2",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a2",
+      "channel": "email",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a2",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a2",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a3",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a3",
+      "channel": "email",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a3",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a3",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a4",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a4",
+      "channel": "email",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a4",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a4",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a5",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a5",
+      "channel": "email",
+      "complete": false,
+      "syncedAt": "2026-10-08T10:00:00Z"
+    },
+    {
+      "accountId": "a5",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a5",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a6",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a6",
+      "channel": "email",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a6",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a6",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a7",
+      "channel": "linkedin",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a7",
+      "channel": "email",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a7",
+      "channel": "crm",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    },
+    {
+      "accountId": "a7",
+      "channel": "calendar",
+      "complete": true,
+      "syncedAt": "2026-10-14T18:00:00Z"
+    }
+  ],
+  "commitments": [
+    {
+      "id": "promise-1",
+      "contactId": "c1",
+      "description": "Email implementation outline",
+      "dueAt": "2026-10-12T10:00:00Z",
+      "status": "open",
+      "confirmed": true,
+      "evidenceId": "n2",
+      "evidenceSource": "salesrobot"
+    },
+    {
+      "id": "promise-2",
+      "contactId": "c4",
+      "description": "Follow up after launch",
+      "dueAt": "2026-11-02T09:00:00Z",
+      "status": "open",
+      "confirmed": true,
+      "evidenceId": "o1",
+      "evidenceSource": "smartlead"
+    }
+  ]
+}
