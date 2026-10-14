@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "workspaceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asOf": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "account": {
+      "type": "object",
+      "required": [
+        "id",
+        "events",
+        "action",
+        "assetBrief",
+        "reviewRequired"
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "sendAllowed": {
+          "const": false
+        },
+        "reviewRequired": {
+          "const": true
+        },
+        "refreshBeforeAction": {
+          "const": true
+        }
+      },
+      "required": [
+        "sendAllowed",
+        "reviewRequired",
+        "refreshBeforeAction"
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "workspaceId",
+    "asOf",
+    "account",
+    "execution"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review-only context pack"
+}
