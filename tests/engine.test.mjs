@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {reconcile,contextPack,validateModelBrief,DEFAULT_POLICY} from '../src/engine.mjs';
+import {runPipeline} from '../src/pipeline.mjs';
+import {mapEvents} from '../src/ingest.mjs';
+const sample=JSON.parse(await readFile(new URL('../data/demo.json',import.meta.url)));
+const fresh=()=>structuredClone(sample);
+const account=(r,id)=>r.accounts.find(a=>a.id===id);
+test('demo resolves distinct business decisions and deduplicates replay',()=>{
+ const r=reconcile(fresh());
+ assert.equal(r.stats.duplicateEvents,1);
+ for(const [id,action]of Object.entries({a1:'review_overdue',a2:'prepare_meeting',a3:'suppress',a4:'wait',a5:'verify_coverage',a7:'review_identity'}))assert.equal(account(r,id).action,action);
+ assert.deepEqual(account(r,'a1').assetBrief.recipientIds,['c1']);
+ assert.equal(contextPack(r,'a1').execution.sendAllowed,false);
+});
+test('cross-channel opt-out blocks a contact even if CRM flag is absent',()=>{const d=fresh();delete d.contacts.find(c=>c.id==='c3').doNotContact;assert.equal(account(reconcile(d),'a3').action,'suppress');});
+test('conflicting event replay quarantines account',()=>{const d=fresh();d.events.at(-1).text='Changed content';assert.equal(account(reconcile(d),'a1').action,'review_identity');});
+test('stale complete source prevents drafting',()=>{const d=fresh();d.coverage.find(c=>c.accountId==='a1').syncedAt='2026-10-01T00:00:00Z';assert.equal(account(reconcile(d),'a1').action,'verify_coverage');});
+test('fulfilled label without proof requires review',()=>{const d=fresh();d.commitments[0].status='fulfilled';assert.equal(account(reconcile(d),'a1').action,'review_commitment');});
+test('future events are rejected',()=>{const d=fresh();d.events[0].at='2030-01-01T00:00:00Z';assert.throws(()=>reconcile(d),/after snapshot/);});
+test('invented evidence and quotes fail validation',()=>{const p=contextPack(reconcile(fresh()),'a1');assert.throws(()=>validateModelBrief({summary:'x',nextSteps:[],claims:[{statement:'x',evidenceId:'fake:1',quote:'x'}]},p),/known evidence/);assert.throws(()=>validateModelBrief({summary:'x',nextSteps:[],claims:[{statement:'x',evidenceId:'salesrobot:n1',quote:'invented quote'}]},p),/Quote not found/);});
+test('default pipeline makes no external calls',async()=>{const r=await runPipeline(fresh(),{connectors:{jev(){throw Error('must not call');}}});assert.equal(r.ledger.requests,0);});
+test('request budget is enforced across accounts',async()=>{let calls=0;const connectors={jev:async()=>{calls++;return {choice:'reply',confidence:1};},gemini:async()=>{calls++;return {brief:{summary:'Review evidence',claims:[],nextSteps:['Review']}};}};const r=await runPipeline(fresh(),{allowExternal:true,connectors,policy:{...DEFAULT_POLICY,maxModelCalls:1}});assert.equal(calls,1);assert.equal(r.ledger.requests,1);});
+test('cached results avoid repeated provider calls',async()=>{let calls=0;const connectors={jev:async()=>{calls++;return {choice:'wait',confidence:1};}};const a=await runPipeline(fresh(),{allowExternal:true,connectors});const before=calls;const b=await runPipeline(fresh(),{allowExternal:true,connectors,cache:a.cache});assert.equal(calls,before);assert.ok(b.ledger.cacheHits>0);});
+test('mapping refuses ambiguous identities',()=>{const d=fresh();const r=mapEvents([{email:d.contacts.find(c=>c.id==='c7').email}],{source:'test',channel:'email',identity:{path:'email',contactField:'email'},fields:{},directions:{}},d.contacts);assert.equal(r.events.length,0);assert.equal(r.rejected.length,1);});
