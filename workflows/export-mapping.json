@@ -1,0 +1,9 @@
+{
+  "description": "Generic reviewed message export mapping. Adapt field paths to the actual provider response; not a native SalesRobot or Clay contract.",
+  "rowsPath": "messages",
+  "source": "reviewed_export",
+  "channel": "linkedin",
+  "identity": {"path": "contactEmail", "contactField": "email"},
+  "fields": {"id": "messageId", "at": "timestamp", "text": "body", "direction": "direction"},
+  "directions": {"received": "inbound", "sent": "outbound"}
+}

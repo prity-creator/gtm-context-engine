@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "name": "cross-channel-context-review",
+  "format": "gtm-context-engine-cli-manifest",
+  "notAnN8nExport": true,
+  "entrypoint": "node src/cli.mjs analyze data/demo.json",
+  "liveEntrypoint": "node --env-file=.env src/cli.mjs live data/demo.json --allow-external",
+  "steps": [
+    {"id":"validate", "implementation":"src/engine.mjs#validate", "onFailure":"stop"},
+    {"id":"reconcile", "implementation":"src/engine.mjs#reconcile", "checks":["identity collisions","duplicate/conflicting events","source coverage","opt-outs","commitments","meeting state"]},
+    {"id":"route", "implementation":"src/pipeline.mjs#runPipeline", "model":"jev", "optional":true, "requires":"explicit external-data permission and account credentials"},
+    {"id":"brief", "models":["gemini","claude"], "optional":true, "validation":"exact evidence quotes + human review"},
+    {"id":"export", "output":"context pack or private/result.json", "sendAllowed":false}
+  ],
+  "sideEffects": {"sendMessages":false,"createMedia":false,"writeCRM":false},
+  "futureConsumer": "Adaptive Follow-up Studio (separate project, not built here)"
+}
