@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reconcile GTM Context"
+  short_description: "Reconcile sales evidence across channels"
+  default_prompt: "Use $reconcile-gtm-context to review this account snapshot."
