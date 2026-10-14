@@ -109,11 +109,12 @@ function reconcile(data, policy=DEFAULT_POLICY){
     const allowed=['review_reply','review_overdue','prepare_meeting'].includes(action);
     const buyerEvidence=events.filter(e=>e.direction==='inbound'&&!blocked.has(e.contactId));
     const objections=[['implementation',/implement|migration|rollout|integration/i],['budget',/budget|price|cost|expensive/i],['timing',/next month|next quarter|later|launch/i],['proof',/case study|proof|results|reference/i]].map(([topic,re])=>({topic,evidence:buyerEvidence.filter(e=>re.test(e.text)).map(keyOf)})).filter(x=>x.evidence.length);
-    const topics=new Set(objections.map(o=>o.topic));
+    const recipientIds=allowed?[...new Set(events.filter(e=>evidence.includes(keyOf(e))&&!blocked.has(e.contactId)).map(e=>e.contactId))]:[];
+    const topics=new Set(objections.filter(o=>o.evidence.some(id=>buyerEvidence.some(e=>keyOf(e)===id&&recipientIds.includes(e.contactId)))).map(o=>o.topic));
     const asset=allowed?(topics.has('implementation')?'implementation_outline':topics.has('budget')?'cost_assumptions':topics.has('proof')?'approved_case_study':'concise_context_reply'):'none';
     const unknowns=[...(!a.industry?['Industry not verified']:[]),...(a.employees==null?['Company size not verified']:[]),...gaps.map(x=>`No confirmed ${x.replaceAll('_',' ')} in records`),...(incomplete?['Source coverage is not complete and fresh']:[])];
     return {...a,contacts,events,coverage,commitments,suppressedContactIds:suppressed,roles,gaps,fit,score:collision||!active.length?0:fit.reduce((n,x)=>n+x.points,0),action,reason,evidence,objections,unknowns,
-      assetBrief:{type:asset,status:'recommendation_only',evidenceIds:evidence,recipientIds:allowed?[...new Set(events.filter(e=>evidence.includes(keyOf(e))&&!blocked.has(e.contactId)).map(e=>e.contactId))]:[],instruction:allowed?'Use only supported facts; confirm recipient and asset suitability. No asset has been generated or sent.':'Resolve the blocking condition before drafting.',memeEligible:false,videoEligible:false},
+      assetBrief:{type:asset,status:'recommendation_only',evidenceIds:evidence,recipientIds,instruction:allowed?'Use only supported facts; confirm recipient and asset suitability. No asset has been generated or sent.':'Resolve the blocking condition before drafting.',memeEligible:false,videoEligible:false},
       reviewRequired:true,modelRoute:allowed?'jev_then_optional_gemini':'code_only'};
   }).sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name));
   const feedback=['implementation','budget','timing','proof'].map(topic=>({topic,accountIds:accounts.filter(a=>a.objections.some(o=>o.topic===topic)).map(a=>a.id)}));
