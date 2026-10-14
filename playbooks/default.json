@@ -1,0 +1,15 @@
+{
+  "version": "2026-10-15.1",
+  "targetIndustries": ["B2B SaaS", "Business services"],
+  "minEmployees": 50,
+  "maxEmployees": 5000,
+  "requiredRoles": ["champion", "economic_buyer", "technical_reviewer"],
+  "freshnessHours": 48,
+  "weights": {"industry": 30, "size": 20, "engagement": 20, "overdue": 30},
+  "reviewRequired": true,
+  "modelConfidenceThreshold": 0.9,
+  "maxModelCalls": 6,
+  "maxInputChars": 24000,
+  "estimatedCallUsd": {"jev": 0.001, "gemini": 0.02, "claude": 0.1},
+  "estimatedRunBudgetUsd": 0.5
+}
