@@ -2,7 +2,7 @@
 
 **Turn scattered sales conversations into an evidence-backed account review queue.**
 
-A salesperson promises an implementation outline on LinkedIn. A finance contact asks for cost assumptions by email. The CRM says “proposal,” but no technical reviewer is confirmed. This project brings those facts together, surfaces the overdue promise, and recommends the next asset to review—with source references.
+A salesperson promises an implementation outline on LinkedIn. A finance contact asks for cost assumptions by email. The CRM says “proposal,” but no technical reviewer is confirmed. This project brings those facts together, surfaces the overdue promise, and recommends the next asset to review- with source references.
 
 Built by Prity Kar as an open-source GTM engineering project. This is a working local prototype with fictional demo data, not a claim of production deployment or measured revenue uplift.
 
